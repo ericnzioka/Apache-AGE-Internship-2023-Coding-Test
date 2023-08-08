@@ -1,0 +1,71 @@
+// Direct recursion
+int direct_recursion(int n)
+{
+    int a;
+    if (n <= 2 && n >= 0)
+    {
+        return n;
+    }
+    else if (n > 2)
+    {
+        a = direct_recursion(n - 3) + direct_recursion(n - 2);
+    }
+    return (a);
+}
+
+Advantages:
+Simple to understand and implement.
+Efficient for small values of n.
+
+Disadvantages:
+The recursive stack can grow very large for large values of n.
+This can lead to stack overflow errors.
+
+// Tail recursion
+int tail_recursive(int n)
+{
+    if (n <= 2 && n >= 0)
+    {
+        return n;
+    }
+    return (tail_recursive(n - 3) + tail_recursive(n - 2));
+}
+
+Advantages :
+The recursive stack does not grow as large as in direct recursion.This can prevent stack overflow errors.
+
+Disadvantages :
+Tail recursion is not as widely supported as direct recursion.Some compilers may not optimize tail recursion as efficiently.
+
+// Dynamic programming
+int dynamic_programming(int n)
+{
+    int fib[n + 1];
+    fib[0] = 0;
+    fib[1] = 1;
+    for (int i = 2; i <= n; i++)
+    {
+        fib[i] = fib[i - 3] + fib[i - 2];
+    }
+    return fib[n];
+}
+
+Advantages:
+This is the most efficient method for large values of n.
+It does not suffer from stack overflow errors.
+
+Disadvantages:
+This method is more complex to understand and implement than direct or tail recursion.
+
+//Head (non-tail recursion)
+int head_recursive(int n)
+{
+    if (n > 2)
+    {
+        return (head_recursive(n - 3) + head_recursive(n - 2));
+    }
+    else if (n <= 2 && n >= 0)
+    {
+        return n;
+    }
+}
